@@ -4,8 +4,6 @@ pipeline {
     }
 environment {
         AWS_REGION = 'us-east-1'
-        AWS_ACCESS_KEY_ID = credentials('jx-cloud-credentials-aws-access-key-id')
-        AWS_SECRET_ACCESS_KEY = credentials('jx-cloud-credentials-aws-secret-access-key')
     }
 
     stages {
@@ -20,8 +18,8 @@ stage('build') {
       stage('cdk deploy') {
         steps {
           container('aws-cdk') {
-            sh "export AWS_ACCESS_KEY_ID = $(jx step credential --name jx-cloud-credentials-aws-access-key-id --key text)"
-            sh "export AWS_SECRET_ACCESS_KEY = $(jx step credential --name jx-cloud-credentials-aws-secret-access-key --key text)"
+            sh "export AWS_ACCESS_KEY_ID = `jx step credential --name jx-cloud-credentials-aws-access-key-id --key text`"
+            sh "export AWS_SECRET_ACCESS_KEY = `jx step credential --name jx-cloud-credentials-aws-secret-access-key --key text`"
             sh "cdk deploy"
           }
 }
