@@ -4,7 +4,7 @@ pipeline {
     }
 environment {
         AWS_REGION = 'us-east-1'
-        AWS_ACCESS_KEY_ID = credentials('jx-cloud-credentials-aws-key-id')
+        AWS_ACCESS_KEY_ID = credentials('jx-cloud-credentials-aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('jx-cloud-credentials-aws-secret-access-key')
     }
 
