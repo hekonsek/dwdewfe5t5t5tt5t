@@ -2,10 +2,10 @@ pipeline {
     agent {
       label "jenkins-aws-cdk"
     }
-    envVars {
-      envVar(key: 'AWS_REGION', value: 'us-east-1')
-      secretEnvVar(key: 'AWS_ACCESS_KEY_ID', secretName: 'jx-cloud-credentials', secretKey: 'aws-access-key-id')
-      secretEnvVar(key: 'AWS_SECRET_ACCESS_KEY', secretName: 'jx-cloud-credentials', secretKey: 'aws-secret-access-key')
+environment {
+        AWS_REGION = 'us-east-1'
+        AWS_ACCESS_KEY_ID = credentials('jx-cloud-credentials-aws-key-id')
+        AWS_SECRET_ACCESS_KEY = credentials('jx-cloud-credentials-aws-secret-access-key')
     }
 
     stages {
