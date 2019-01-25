@@ -18,9 +18,7 @@ stage('build') {
       stage('cdk deploy') {
         steps {
           container('aws-cdk') {
-            export xxx=yyy
-            echo $xxx
-            sh "cdk AWS_ACCESS_KEY_ID=`jx step credential --name jx-cloud-credentials-aws-access-key-id --key text` AWS_SECRET_ACCESS_KEY=`jx step credential --name jx-cloud-credentials-aws-secret-access-key --key text` deploy --ec2creds=false --require-approval=never"
+            sh "AWS_ACCESS_KEY_ID=`jx step credential --name jx-cloud-credentials-aws-access-key-id --key text` AWS_SECRET_ACCESS_KEY=`jx step credential --name jx-cloud-credentials-aws-secret-access-key --key text` cdk deploy --ec2creds=false --require-approval=never"
           }
 }
 }
